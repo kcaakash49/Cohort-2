@@ -41,9 +41,59 @@
  */
   const express = require('express');
   const bodyParser = require('body-parser');
+  const fs = require('fs')
   
   const app = express();
+
+  const todoItems = []
   
   app.use(bodyParser.json());
+
+  app.get('/todos',(req,res)=>{
+    const getItems = todoItems.map((i)=>{
+      return(i.item)
+        
+      
+    })
+
+    res.json(getItems)
+    
+  })
+
+  app.get('/todos/:id',(req,res)=>{
+    const id = req.params.id;
+    const displayItem = todoItems.filter((item)=>{
+      if(item.id==id){
+        return item
+      }
+    })
+    res.json(displayItem)
+  })
+
+  app.post('/todos',(req,res)=>{
+    const addTodo = req.body;
+    console.log(addTodo)
+    todoItems.push(addTodo)
+    console.log(todoItems)
+    res.json({})
+  })
+
+  app.put('/todos/:id',(req,res)=>{
+    const id = req.params.id;
+    console.log("Id is ", id)
+    todoItems.forEach(element=>{
+      if(element.id ==id){
+        console.log(element.id)
+        element.item = "Play Football"
+
+      }
+    })
+    res.json({
+      msg:"Updated"
+    })
+  })
   
-  module.exports = app;
+  app.listen(3000,()=>{
+    console.log("Server started at port 3000")
+  })
+  // module.exports = app;

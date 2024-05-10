@@ -17,5 +17,40 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+// const folderPath = '/home/aakashkc/Web develeopment/2024/Learn with Harikat Singh/Assignments/assignments-master/week-2/02-nodejs/files';
+const folderPath = path.join(__dirname,'files')//joins current directory with files folder
 
-module.exports = app;
+app.get("/files",(req,res)=>{
+  fs.readdir(folderPath,(err,files)=>{
+    console.log("Reading Successful")
+    if (err){
+      console.log("error reading folder ",err);
+      res.status(500).send('error reading folder')
+    }
+    console.log("Files in the folder",files)
+    res.json(files)
+  })
+})
+
+app.get('/files/:filename',(req,res)=>{
+  const filename = req.params.filename;
+  console.log(filename)
+  const filePath = path.join(__dirname,"files",filename)
+  fs.readFile(filePath,'utf-8',(err,data)=>{
+    if(err){
+      console.log("Error Reading FIle",err);
+      res.status(500).send("No file")
+    }else{
+      console.log("reading File Successful")
+      res.send(data)
+    }
+    
+  })
+})
+
+app.all('*', (req, res) => {
+  res.status(404).send('Route not found');
+});
+
+app.listen(3000)
+// module.exports = app;
