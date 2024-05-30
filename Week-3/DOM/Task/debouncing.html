@@ -1,0 +1,38 @@
+<html>
+
+<body>
+    <input id="num1" type="text" placeholder="First Number" oninput="debounceCalculateSum()"><br><br>
+    <input id="num2" type="text" placeholder="Second Number" oninput="debounceCalculateSum()"><br><br>
+    
+    <p id="demo"></p>
+
+    <script>
+        let timeOut
+        function debounceCalculateSum(){
+            //delay the call to calculateSum until ive not been called for 100ms
+            // and i have been called atleast once
+            //need to clear a clock
+            //cleartimeout
+            //for first call timeout will be undefined so will be ignored.
+            //now timeout will hold an id which will be cleared out if debounce is called within 100ms
+            //this will ensure that if debounce is not called within 100ms then only it will send request.
+            //at last timeout will hold id of the latest timeout
+            clearTimeout(timeOut)
+            timeOut = setTimeout(() => {
+                calculateSum()
+            }, 100);
+            
+        }
+        //using async await
+        async function calculateSum(){
+            let x = document.getElementById("num1").value
+            let y = document.getElementById("num2").value
+
+            let response = await fetch(`http://localhost:3000/sum?a=${x}&b=${y}`)
+            const data = await response.text()
+            document.getElementById("demo").innerHTML = "The sum is " + data
+        }
+    </script>
+</body>
+
+</html>

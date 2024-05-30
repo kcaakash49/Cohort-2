@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript removeEventListner</h1>
+    <div id="myDiv" style="border: 2px solid black; padding: 8px">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eius minus harum tempore fuga voluptas dolores vitae voluptatem maiores qui.</p>
+        <p>Click the button to remove the divs event handler</p>
+        <button id="myBtn">Try it</button>
+    </div>
+    <p id="demo"></p>
+    <script>
+        document.getElementById("myDiv").addEventListener("mouseover",myFunction)
+
+        function myFunction(){
+            document.getElementById("demo").innerHTML = Math.random();
+        }
+        document.getElementById("myBtn").addEventListener("click",()=>{
+            document.getElementById("myDiv").removeEventListener("mouseover",myFunction)
+        })
+    </script>
+
+</body>
+</html>

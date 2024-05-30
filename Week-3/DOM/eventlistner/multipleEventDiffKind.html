@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript EventListner</h1>
+    <button id="myBtn">Try it</button>
+    <p id="demo"></p>
+    <script>
+        var x = document.getElementById("myBtn")
+
+        x.addEventListener("click",()=>{
+            document.getElementById("demo").innerHTML += "Clicked it <br>"
+        })
+        x.addEventListener("mouseover",()=>{
+            document.getElementById("demo").innerHTML += "Mouse is over Me <br>"
+        })
+        x.addEventListener("mouseout",()=>{
+            document.getElementById("demo").innerHTML += "mouse is out <br>"
+        })
+    </script>
+
+</body>
+</html>

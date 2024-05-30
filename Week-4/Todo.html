@@ -1,0 +1,59 @@
+<html>
+    <br>
+        <div>
+            <input id="title" type="text" placeholder="title"><br><br>
+            <input id="desc" type="text" placeholder="description"><br><br>
+            
+            <div id="container"></div>
+        </div>
+
+        <script>
+           
+            
+            function updataDOMAcctoState(state){
+                document.getElementById("container").innerHTML = "";
+                state.forEach(item => {
+                    const todoList = createChild(item.title,item.description,item.id)
+                    document.getElementById("container").appendChild(todoList)
+                    
+                });
+            }
+
+            function createChild(title,desc,id){
+                const child = document.createElement("div");
+                const firstGrandChild = document.createElement("div");
+                const secondGrandChild = document.createElement("div")
+                const thirdGrandChild = document.createElement("button");
+                firstGrandChild.innerHTML = title
+                secondGrandChild.innerHTML = desc;
+                thirdGrandChild.innerHTML ="Mark as done"
+
+                child.setAttribute("id",id)
+                thirdGrandChild.setAttribute("onclick",`onDone(${id})`)
+                
+                child.appendChild(firstGrandChild)
+                child.appendChild(secondGrandChild)
+                child.appendChild(thirdGrandChild)
+
+
+                return child;
+
+            }
+            function onDone(id){
+                const final = document.getElementById(id)
+                console.log(final.children[2])
+                final.children[2].innerHTML = "Done"
+            }
+
+            window.setInterval(
+                async function(){
+                    const response = await fetch("http://localhost:3000/todo");
+                    const json = await response.json()
+                    updataDOMAcctoState(json)
+    
+                },5000)
+
+            
+        </script>
+    </body>
+</html>

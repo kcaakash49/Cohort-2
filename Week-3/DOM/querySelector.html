@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The Document Object</h1>
+    <h2>The querySelectorAll() method</h2>
+
+    <p class = "intro">Change the background color of every p element where the paretn is a div element</p>
+    <p>another Paragraph</p>
+    <div>
+        <h3>H3 element</h3>
+        <p>I am a paragraph and my parent is a div</p>
+    </div>
+
+    <div>
+        <h2>H2 element</h2>
+        <p>I am also a paragraph and my parent is also a div</p>
+    </div>
+
+    <div id="myDiv" style="border: 2px solid black;padding: 8px;">
+        <h2 class="example">A Heading</h2>
+        <p class="example">A paragraph</p>
+        <p class="example">Second Paragraph</p>
+    </div>
+    <p id="demo"></p>
+    <script>
+        const nodelist = document.querySelectorAll("div > p");//selects paragraph inside div elements
+        console.log("List", nodelist)
+        nodelist.forEach(item=>{
+            console.log(item)
+            item.style.backgroundColor = "green"
+        })
+        const paragraph = document.querySelectorAll("p.intro")
+        console.log(paragraph)
+        paragraph.forEach(item=>item.style.backgroundColor = "red")
+
+        const element = document.getElementById("myDiv")
+        const list = element.querySelectorAll(".example")
+        document.getElementById("demo").innerHTML = "The length of element is " + list.length
+    </script>
+</body>
+</html>

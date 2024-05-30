@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Removing Child</h2>
+    <p>Click Remove to remove paragraph</p>
+    <button onclick="myFunction()">Remove</button>
+    <div id="box">
+        <h5>Div Box</h5>
+        <p id="para">Hey there</p>
+
+    </div>
+
+    <script>
+        function myFunction(){
+            const box = document.getElementById("box")
+            const para = document.getElementById("para")
+    
+            box.removeChild(para)
+
+        }
+    </script>
+</body>
+</html>

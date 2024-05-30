@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaSCript BubblingvsCapturing</h1>
+
+    <div id="div1">
+        <h2>Bubbling</h2>
+        <p id="p1">Click me</p>
+    </div>
+
+    <div id="div2">
+        <h2>Capturing</h2>
+        <p id="p2">Click me</p>
+    </div>
+
+    <script>
+        document.getElementById("p1").addEventListener("click",()=>{
+            alert("You Clicked P element")
+            event.stopPropagation();
+        },false)
+        document.getElementById("div1").addEventListener("click",()=>{
+            alert("You clicked div element")
+
+        },false)
+
+        document.getElementById("p2").addEventListener("click",()=>{
+            alert("yo clicket p2")
+        },true)
+
+        document.getElementById("div2").addEventListener("click",()=>{
+            alert("you clicked div2")
+        },true)
+    </script>
+</body>
+</html>

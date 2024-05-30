@@ -1,0 +1,7 @@
+React Component Return
+Re-render
+React.memo
+Keys in React
+Wrapper Component
+Need of Hooks
+

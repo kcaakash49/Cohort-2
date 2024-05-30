@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript HTML Events</h1>
+    <h2>The oninput attribute</h2>
+
+    Enter Your Name: <input type="text" id="fname" oninput="upperCase()">
+
+    <script>
+        function upperCase(){
+            x = document.getElementById("fname")
+            x.value = x.value.toUpperCase();
+        }
+
+    </script>
+</body>
+</html>

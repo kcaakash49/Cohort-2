@@ -1,0 +1,62 @@
+<html>
+    <br>
+        <div>
+            <input id="title" type="text" placeholder="title"><br><br>
+            <input id="desc" type="text" placeholder="description"><br><br>
+            <button id="btn" onclick="addToDo()">Click to Add</button>
+            <div id="container"></div>
+        </div>
+
+        <script>
+            // function addToDo(){
+            //     const title = document.getElementById("title").value;
+            //     const description = document.getElementById("desc").value
+            //     console.log(title,description)
+            //     //ugly Way to append todo
+            // //     document.getElementById("container").innerHTML += `<div>
+            // //         <div>${title}</div>
+            // //         <div>${description}</div>
+            // //         <button>Mark as done </button>
+            // //     </div>`
+            //     const childDiv = document.createElement("div");
+            //     const grandChildDiv = document.createElement("div");
+            //     grandChildDiv.innerHTML = title;
+            //     childDiv.appendChild(grandChildDiv)
+            //     document.getElementById("container").appendChild(childDiv)
+            // }
+            let globalid = 1
+            function addToDo(){
+                const title = document.getElementById("title").value;
+                const description = document.getElementById("desc").value
+                const parent = document.getElementById("container")
+                parent.appendChild(createChild(title,description,globalid++))
+            }
+
+            function createChild(title,desc,id){
+                const child = document.createElement("div");
+                const firstGrandChild = document.createElement("div");
+                const secondGrandChild = document.createElement("div")
+                const thirdGrandChild = document.createElement("button");
+                firstGrandChild.innerHTML = title
+                secondGrandChild.innerHTML = desc;
+                thirdGrandChild.innerHTML ="Mark as done"
+
+                child.setAttribute("id",id)
+                thirdGrandChild.setAttribute("onclick",`onDone(${id})`)
+                
+                child.appendChild(firstGrandChild)
+                child.appendChild(secondGrandChild)
+                child.appendChild(thirdGrandChild)
+
+
+                return child;
+
+            }
+            function onDone(id){
+                const final = document.getElementById(id)
+                console.log(final.children[2])
+                final.children[2].innerHTML = "Done"
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+
+<body>
+    <input id="num1" type="text" placeholder="First Number"><br><br>
+    <input id="num2" type="text" placeholder="Second Number"><br><br>
+    <button id="btn" onclick="calculateSum2()">Calculate Sum</button>
+    <p id="demo"></p>
+
+    <script>
+        function calculateSum() {
+            let x = document.getElementById("num1").value
+            let y = document.getElementById("num2").value
+            // let sum = x+y;
+            // document.getElementById("demo").innerHTML = "The Sum is " + sum;
+
+            fetch(`http://localhost:3000/sum?a=${x}&b=${y}`)
+                .then(function (response) {
+                    console.log(response)
+                    response.text()
+                        .then(function (data) {
+
+                            document.getElementById("demo").innerHTML = "The sum is " + data
+                        })
+
+                })
+        }
+        //using async await
+        async function calculateSum2(){
+            let x = document.getElementById("num1").value
+            let y = document.getElementById("num2").value
+
+            let response = await fetch(`http://localhost:3000/sum?a=${x}&b=${y}`)
+            const data = await response.text()
+            document.getElementById("demo").innerHTML = "The sum is " + data
+        }
+    </script>
+</body>
+
+</html>
